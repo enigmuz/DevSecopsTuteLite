@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nima's DevSecOps Command Center</title>
+    <style>
+        body { background: #0d1117; color: white; font-family: sans-serif; padding: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .card { background: #161b22; padding: 20px; border-radius: 10px; border: 1px solid #30363d; border-top: 4px solid #da3633; }
+        .status { font-weight: bold; padding: 5px 10px; border-radius: 5px; float: right; font-size: 12px; }
+        .fail { background: #da3633; color: white; }
+        h1 { color: #58a6ff; text-align: center; }
+        .log { background: #000; color: #3fb950; padding: 15px; border-radius: 5px; font-family: monospace; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>?? DevSecOps Automation Dashboard</h1>
+    <div class="grid">
+        <div class="card">
+            <h3>SCA Scan <span class="status fail">VULNERABLE</span></h3>
+            <p>Found: Express 4.16.0</p>
+            <p style="color: #8b949e;">Risk: Prototype Pollution</p>
+        </div>
+        <div class="card">
+            <h3>SAST Scan <span class="status fail">FAILED</span></h3>
+            <p>Issue: Hardcoded Secret</p>
+            <p style="color: #8b949e;">File: app.js (Line 6)</p>
+        </div>
+        <div class="card">
+            <h3>IaC Scan <span class="status fail">FAILED</span></h3>
+            <p>Issue: Running as ROOT</p>
+            <p style="color: #8b949e;">Risk: Escape Container</p>
+        </div>
+    </div>
+    <div class="log">
+        > [SCANNER] Pushing code to GitHub... <br>
+        > [AUTOMATION] Security Policy Violation Detected! <br>
+        > [DEPLOYMENT] STATUS: BLOCKED BY DEVSECOPS PIPELINE.
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "nima-devsecops-lite",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "express": "4.16.0",
+    "sqlite3": "^5.1.6"
+  }
+}
