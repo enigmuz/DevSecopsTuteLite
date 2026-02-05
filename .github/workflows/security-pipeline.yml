@@ -11,28 +11,25 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 1. SAST (Static Code)
+      # 1. SCAN FOR CODE VULNERABILITIES (SAST)
       - name: Snyk Code Scan
         uses: snyk/actions/node@master
-        continue-on-error: true  # <--- Add this
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: code test
 
-      # 2. SCA (Dependencies)
+      # 2. SCAN FOR VULNERABLE LIBRARIES (SCA)
       - name: Snyk Open Source Scan
         uses: snyk/actions/node@master
-        continue-on-error: true  # <--- Add this
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
 
-      # 3. IaC (Dockerfile)
+      # 3. SCAN FOR INFRASTRUCTURE ERRORS (IaC)
       - name: Snyk Infrastructure Scan
         uses: snyk/actions/node@master
-        continue-on-error: true  # <--- Add this
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
