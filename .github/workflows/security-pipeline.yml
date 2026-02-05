@@ -3,26 +3,34 @@ name: DevSecOps-Security-Pipeline
 on:
   push:
     branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
 
 jobs:
-  security_scans:
+  snyk-security-scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 1. SCA (Software Composition Analysis) - Checking package.json
-      - name: Scan Dependencies (SCA)
-        uses: aquasecurity/trivy-action@master
+      # 1. SCAN FOR CODE VULNERABILITIES (SAST)
+      - name: Snyk Code Scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          scan-type: 'fs'
-          scan-ref: '.'
-          severity: 'HIGH,CRITICAL'
+          command: code test
 
-      # 2. IaC (Infrastructure as Code) - Checking Dockerfile
-      - name: Scan Dockerfile (IaC)
-        uses: bridgecrewio/checkov-action@master
+      # 2. SCAN FOR VULNERABLE LIBRARIES (SCA)
+      - name: Snyk Open Source Scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          directory: .
+          command: test
+
+      # 3. SCAN FOR INFRASTRUCTURE ERRORS (IaC)
+      - name: Snyk Infrastructure Scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: iac test Dockerfile
