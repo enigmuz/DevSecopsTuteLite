@@ -1,0 +1,28 @@
+name: DevSecOps-Security-Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  security_scans:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 1. SCA (Software Composition Analysis) - Checking package.json
+      - name: Scan Dependencies (SCA)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          severity: 'HIGH,CRITICAL'
+
+      # 2. IaC (Infrastructure as Code) - Checking Dockerfile
+      - name: Scan Dockerfile (IaC)
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
