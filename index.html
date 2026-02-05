@@ -1,40 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Nima's DevSecOps Command Center</title>
+    <meta charset="UTF-8">
+    <title>Horizon Global Bank | Secure Login</title>
     <style>
-        body { background: #0d1117; color: white; font-family: sans-serif; padding: 40px; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .card { background: #161b22; padding: 20px; border-radius: 10px; border: 1px solid #30363d; border-top: 4px solid #da3633; }
-        .status { font-weight: bold; padding: 5px 10px; border-radius: 5px; float: right; font-size: 12px; }
-        .fail { background: #da3633; color: white; }
-        h1 { color: #58a6ff; text-align: center; }
-        .log { background: #000; color: #3fb950; padding: 15px; border-radius: 5px; font-family: monospace; margin-top: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        .bank-logo { color: #004a99; font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #004a99; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #003366; }
+        .footer-text { margin-top: 20px; font-size: 12px; color: #777; }
+        .security-badge { margin-top: 15px; display: inline-block; padding: 5px 10px; background: #e8f0fe; color: #1967d2; border-radius: 20px; font-size: 11px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <h1>?? DevSecOps Automation Dashboard</h1>
-    <div class="grid">
-        <div class="card">
-            <h3>SCA Scan <span class="status fail">VULNERABLE</span></h3>
-            <p>Found: Express 4.16.0</p>
-            <p style="color: #8b949e;">Risk: Prototype Pollution</p>
-        </div>
-        <div class="card">
-            <h3>SAST Scan <span class="status fail">FAILED</span></h3>
-            <p>Issue: Hardcoded Secret</p>
-            <p style="color: #8b949e;">File: app.js (Line 6)</p>
-        </div>
-        <div class="card">
-            <h3>IaC Scan <span class="status fail">FAILED</span></h3>
-            <p>Issue: Running as ROOT</p>
-            <p style="color: #8b949e;">Risk: Escape Container</p>
-        </div>
-    </div>
-    <div class="log">
-        > [SCANNER] Pushing code to GitHub... <br>
-        > [AUTOMATION] Security Policy Violation Detected! <br>
-        > [DEPLOYMENT] STATUS: BLOCKED BY DEVSECOPS PIPELINE.
+    <div class="login-card">
+        <div class="bank-logo">🏦 HORIZON BANK</div>
+        <p>Enter your credentials to access your account</p>
+        <form action="/api/login" method="GET">
+            <input type="text" name="username" placeholder="Username (Try: ' OR 1=1 --)" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Secure Login</button>
+        </form>
+        <div class="security-badge">🔒 AES-256 ENCRYPTED SESSION</div>
+        <div class="footer-text">© 2026 Horizon Global Finance Group</div>
     </div>
 </body>
 </html>
